@@ -8,7 +8,7 @@
             "name": "Debug Web App",
             "type": "node",
             "request": "launch",
-            "program": "${workspaceRoot}/index.js",
+            "program": "${workspaceRoot}/src/index.js",
             "stopOnEntry": false,
             "args": [],
             "cwd": "${workspaceRoot}",

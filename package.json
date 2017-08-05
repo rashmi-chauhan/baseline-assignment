@@ -38,6 +38,9 @@
     ]
   },
   "scripts": {
+    "build": "./node_modules/.bin/babel src -d build",
+    "start": "./node_modules/.bin/babel src -d build && node ./build/index.js",
+    "heroku-postbuild": "cd client && yarn run heroku-postbuild",
     "precommit": "lint-staged"
   },
   "devDependencies": {
