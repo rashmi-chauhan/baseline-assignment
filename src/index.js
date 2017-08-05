@@ -1,8 +1,9 @@
-import {} from 'dotenv';
+import {} from 'dotenv/config';
 import express from 'express';
 import next from 'next';
 import winston from 'winston';
 import api from './api';
+import path from 'path';
 
 // Server-wide settings
 winston.level = process.env.WINSTON_LEVEL || 'debug';

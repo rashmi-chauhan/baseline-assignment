@@ -11,7 +11,7 @@
             "program": "${workspaceRoot}/src/index.js",
             "stopOnEntry": false,
             "args": [],
-            "cwd": "${workspaceRoot}",
+            "cwd": "${workspaceRoot}/src",
             "runtimeArgs": [
                 "--nolazy",
                 "-r",
@@ -23,7 +23,8 @@
                 "API_SECRET": "shhh_its_a_secret",
                 "DATABASE_URL": "postgres://postgres@127.0.0.1:61001/graphql_baseline",
                 "REDIS_URL": "redis://127.0.0.1:61000",
-                "REDIS_USER_SESSIONS_DB": "1"
+                "REDIS_USER_SESSIONS_DB": "1",
+                "WEBAPP_MESSAGE": "shhh, don't tell anyone"
             },
             "console": "internalConsole"
         }

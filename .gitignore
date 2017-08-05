@@ -57,7 +57,7 @@ typings/
 # dotenv environment variables file
 .env*
 
-# Transpiled ES2015
+# Transpiled ES2015 and Next.js code
 build
 src/web/.next
 
