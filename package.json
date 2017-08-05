@@ -4,7 +4,7 @@
   "description": "The baseline asset for web applications in Appirio Digital Studios",
   "main": "index.js",
   "author": "Eric Nograles <enograles@appirio.com>",
-  "license": "MIT",
+  "private": true,
   "dependencies": {
     "babel-cli": "^6.24.1",
     "babel-plugin-inline-dotenv": "^1.1.1",
