@@ -1,10 +1,10 @@
 {
-  // Use IntelliSense to learn about possible Node.js debug attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-  "version": "0.2.0",
-  "configurations": [
-    {
+    // Use IntelliSense to learn about possible Node.js debug attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
             "name": "Debug Web App",
             "type": "node",
             "request": "launch",
@@ -27,6 +27,14 @@
                 "WEBAPP_MESSAGE": "shhh, don't tell anyone"
             },
             "console": "internalConsole"
+        },
+        {
+            "name": "Attach to Nodemon",
+            "type": "node",
+            "request": "attach",
+            "port": 5858,
+            "address": "localhost",
+            "restart": true
         }
-  ]
+    ]
 }

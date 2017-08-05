@@ -12,11 +12,6 @@ const app = next({ dev, dir: './web' });
 const handle = app.getRequestHandler();
 const port = process.env.PORT || 3000;
 
-// ES2015 debugging
-if (process.env.NODE_ENV !== 'production') {
-  require('babel-register');
-}
-
 // Scaffold the server
 app.prepare()
   .then(() => {
