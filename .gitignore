@@ -58,8 +58,8 @@ typings/
 .env*
 
 # Transpiled ES2015
-api/build
-web/.next
+build
+src/web/.next
 
 # User-specific jetBrains items
 .idea/workspace.xml
