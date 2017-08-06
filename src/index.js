@@ -8,7 +8,7 @@ import path from 'path';
 // Server-wide settings
 winston.level = process.env.WINSTON_LEVEL || 'debug';
 const dev = process.env.NODE_ENV !== 'production'
-const app = next({ dev, dir: './web' });
+const app = next({ dev, dir: './client' });
 const handle = app.getRequestHandler();
 const port = process.env.PORT || 3000;
 
