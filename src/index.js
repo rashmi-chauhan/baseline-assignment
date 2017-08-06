@@ -4,11 +4,12 @@ import next from 'next';
 import winston from 'winston';
 import api from './api';
 import path from 'path';
+import conf from './client/next.config';
 
 // Server-wide settings
 winston.level = process.env.WINSTON_LEVEL || 'debug';
 const dev = process.env.NODE_ENV !== 'production'
-const app = next({ dev, dir: './client' });
+const app = next({ dev, conf, dir: './client' });
 const handle = app.getRequestHandler();
 const port = process.env.PORT || 3000;
 

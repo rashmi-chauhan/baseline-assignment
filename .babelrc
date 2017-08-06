@@ -6,12 +6,60 @@
   ],
   "env": {
     "development": {
-      "plugins": ["inline-dotenv", "transform-inline-environment-variables"]
+      "plugins": [
+        "inline-dotenv",
+        "transform-inline-environment-variables",
+        [
+          "module-resolver",
+          {
+            "root": [
+              "./src/client"
+            ],
+            "alias": {
+              "styles": "./src/client/styles"
+            },
+            "cwd": "babelrc"
+          }
+        ],
+        [
+          "wrap-in-js",
+          {
+            "extensions": [
+              "css$",
+              "scss$"
+            ]
+          }
+        ]
+      ]
     },
     "production": {
-      "plugins": ["transform-inline-environment-variables"]
+      "plugins": [
+        "transform-inline-environment-variables",
+        [
+          "module-resolver",
+          {
+            "root": [
+              "./build/client"
+            ],
+            "alias": {
+              "styles": "./build/client/styles"
+            },
+            "cwd": "babelrc"
+          }
+        ],
+        [
+          "wrap-in-js",
+          {
+            "extensions": [
+              "css$",
+              "scss$"
+            ]
+          }
+        ]
+      ]
     }
   },
   "sourceMaps": true,
-  "retainLines": true
+  "retainLines": true,
+  "ignore": ["*.test.js"]
 }
