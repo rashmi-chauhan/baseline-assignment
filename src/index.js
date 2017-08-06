@@ -14,9 +14,10 @@ const handle = app.getRequestHandler();
 const port = process.env.PORT || 3000;
 
 // Scaffold the server
-app.prepare()
-  .then(() => {
-  const server = api(express());
+async function startServer() {
+  await app.prepare();
+  const server = await api(express());
+
   server.get('*', (req, res) => {
     return handle(req, res);
   });
@@ -25,4 +26,7 @@ app.prepare()
     if (err) throw err
     winston.info(`> Ready on http://localhost:${port}`);
   });
-})
+}
+
+// Start the server
+startServer();

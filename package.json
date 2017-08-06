@@ -26,6 +26,7 @@
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "glob": "^7.1.2",
+    "js-yaml": "^3.9.1",
     "jsonwebtoken": "^7.4.2",
     "knex": "^0.13.0",
     "lodash": "^4.17.4",
@@ -49,6 +50,7 @@
     "redux-thunk": "^2.2.0",
     "sass-loader": "^6.0.6",
     "sequelize": "^4.4.2",
+    "swagger-express-mw": "^0.7.0",
     "winston": "^2.3.1"
   },
   "lint-staged": {
@@ -58,7 +60,12 @@
     ]
   },
   "scripts": {
-    "start": "./node_modules/.bin/babel src -d build && cd build/client && cp -R ../../src/client/static . &&  cp -R ../../src/client/styles . && ../../node_modules/.bin/next build && cd .. && node index.js",
+    "build:transpile": "./node_modules/.bin/babel src -d build",
+    "build:copy_client": "cp -R ./src/client/static ./build/client/static &&  cp -R ./src/client/styles ./build/client/styles",
+    "build:copy_swagger": "cp -R ./src/api/swagger ./build/api && cp -R ./src/config ./build",
+    "build:next": "cd build/client && ../../node_modules/.bin/next build && cd ../..",
+    "build:start_transpiled": "cd build && node index.js",
+    "start": "npm run build:transpile && npm run build:copy_client && npm run build:next && npm run build:copy_swagger && npm run build:start_transpiled",
     "precommit": "lint-staged",
     "nodemon": "cd src && ../node_modules/.bin/nodemon --inspect=5858 --nolazy -r babel-register -w index.js",
     "test": "./node_modules/.bin/jest",

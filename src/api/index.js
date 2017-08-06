@@ -1,11 +1,23 @@
 import winston from 'winston';
+import SwaggerExpress from 'swagger-express-mw';
+import bodyParser from 'body-parser';
+import yaml from 'js-yaml';
+import Promise from 'bluebird';
+import path from 'path';
 
-export default function api(app) {
-  app.get('/api/hello', (req, res) => {
-    return res
-      .status(200)
-      .json({message: `Is it me you're looking for?`});
-  });
+// NOTE: Need to manually import controllers since they are referenced indirectly and the build pipeline
+// has no idea they exist without imports
+import './controllers/hello_world';
 
+// Promisify Swagger
+Promise.promisifyAll(SwaggerExpress);
+
+let config = {
+  appRoot: path.join(__dirname, '..') // required config
+};
+
+export default async function api(app) {
+  const swaggerExpress = await SwaggerExpress.createAsync(config);
+  swaggerExpress.register(app);
   return app;
 }
