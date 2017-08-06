@@ -6,7 +6,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 
 function baselineMiddleware() {
   // Disables redux-logger in prod
-  if (process.env.REACT_APP_REDUX_LOGGING_ENABLED === 'false') {
+  if (process.env.REACT_APP_REDUX_DEBUGGING_ENABLED === 'false' || !process.env.REACT_APP_REDUX_DEBUGGING_ENABLED) {
     return applyMiddleware(thunkMiddleware);
   }
 
@@ -14,7 +14,9 @@ function baselineMiddleware() {
 }
 
 export default initialState => {
-  const enhancers = composeWithDevTools(baselineMiddleware());
+  const enhancers = process.env.REACT_APP_REDUX_DEBUGGING_ENABLED === 'true' ? 
+    composeWithDevTools(baselineMiddleware()) :
+    baselineMiddleware();
   const store = createStore(rootReducer, initialState, enhancers);
   return store;
 };
