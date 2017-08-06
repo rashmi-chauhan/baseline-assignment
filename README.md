@@ -1,7 +1,7 @@
 # ads-webapp-baseline
 
-[Live Demo - Dev Mode](https://ads-webapp-baseline-dev.herokuapp.com)
-[Live Demo - Production Mode](https://ads-webapp-baseline-stg.herokuapp.com)
+* [Live Demo - Dev Mode](https://ads-webapp-baseline-dev.herokuapp.com)
+* [Live Demo - Production Mode](https://ads-webapp-baseline-stg.herokuapp.com)
 
 ## Overview
 
@@ -31,6 +31,13 @@ This is the baseline for ADS' fully universal JavaScript web application.  It is
 1. `yarn run nodemon`
 1. Using your favorite debugger, attach to port 5858 to debug back-end code
 1. Open `http://localhost:3000` for the front-end and debug using Chrome DevTools
+
+## Unit Testing
+
+**Convention**: Only files with a `.test.js` extension will be run by Jest
+
+* **One-time Tests Run**: `yarn test`
+* **Live-Reloading Unit Tests**: `yarn run test:watch`
 
 ## Architecture
 
@@ -62,4 +69,14 @@ This is the baseline for ADS' fully universal JavaScript web application.  It is
 
 * [moment](https://www.npmjs.org/moment): Date parsing and formatting library
 * [dotenv](https://www.npmjs.org/dotenv): .env file support
+
+### Unit Testing, Code Quality, and DevOps
+
+* [prettier](https://www.npmjs.org/prettier): Opinionated JavaScript code styling
+* [husky](https://www.npmjs.org/husky): Pre-commit Git Hooks
+* [lint-staged](https://www.npmjs.org/lint-staged): Runs prettier on every staged commit
+* [jest](https://www.npmjs.org/jest): Unit testing framework
+* [enzyme](https://www.npmjs.org/enzyme): React.js testing utilities
+* [react-test-renderer](https://www.npmjs.org/react-test-renderer): React.js testing helpers
+
 
