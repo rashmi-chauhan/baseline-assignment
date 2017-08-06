@@ -16,6 +16,21 @@ This is the baseline for ADS' fully universal JavaScript web application.  It is
 6. **Brainless Heroku and 12FA support**: All things needed for quick Heroku deployments should already be baked in, including good 12FA patterns (specifically, environment variable-driven apps)
 7. **Consistent code styling**: Automated code formatting and warnings for anti-patterns built-in
 
+## Prerequisites
+
+1. Node v8 or higher ([Node Version Manager](https://github.com/creationix/nvm) highly recommended)
+1. [Docker](https://www.docker.com/)
+    * **NOTE**: Docker is only used for fast local scaffolding and is not used by the release process
+1. `npm install -g yarn`
+
+## Running and Debugging
+
+1. Clone this repo
+1. `yarn install`
+1. `yarn run nodemon`
+1. Using your favorite debugger, attach to port 5858 to debug back-end code
+1. Open `http://localhost:3000` for the front-end and debug using Chrome DevTools
+
 ## Architecture
 
 ### Front-end (/src/client)
@@ -44,5 +59,6 @@ This is the baseline for ADS' fully universal JavaScript web application.  It is
 
 ### Common
 
-* [moment](): Date parsing and formatting library
-* [dotenv](): .env file support
+* [moment](https://www.npmjs.org/moment): Date parsing and formatting library
+* [dotenv](https://www.npmjs.org/dotenv): .env file support
+
