@@ -55,9 +55,13 @@
     "nodemon": "cd src && ../node_modules/.bin/nodemon --inspect=5858 --nolazy -r babel-register -w index.js"
   },
   "devDependencies": {
+    "babel-jest": "^20.0.3",
+    "enzyme": "^2.9.1",
     "husky": "^0.14.3",
+    "jest": "^20.0.4",
     "lint-staged": "^4.0.2",
     "nodemon": "^1.11.0",
-    "prettier": "^1.5.3"
+    "prettier": "^1.5.3",
+    "react-test-renderer": "^15.6.1"
   }
 }

@@ -5,13 +5,11 @@ import * as profileActionCreators from '../redux/actions/profile';
 import store from '../redux/store';
 import withRedux from 'next-redux-wrapper'
 
-class PageLanding extends React.Component {
+export class PageLanding extends React.Component {
   render() {
     return (
-      <div>
-        <div>
+      <div id="landing-content">
           TODO: Implement landing page
-        </div>
       </div>
     );
   }
