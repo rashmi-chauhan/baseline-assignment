@@ -44,7 +44,7 @@
   },
   "scripts": {
     "build": "./node_modules/.bin/babel src -d build",
-    "start": "./node_modules/.bin/babel src -d build && cd build/web && ../../node_modules/.bin/next build && cd .. && node index.js",
+    "start": "./node_modules/.bin/babel src -d build && cd build/client && ../../node_modules/.bin/next build && cd .. && node index.js",
     "precommit": "lint-staged",
     "nodemon": "cd src && ../node_modules/.bin/nodemon --inspect=5858 --nolazy -r babel-register -w index.js"
   },
