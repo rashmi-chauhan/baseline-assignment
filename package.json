@@ -2,7 +2,7 @@
   "name": "ads-webapp-baseline",
   "version": "1.0.0",
   "description": "The baseline asset for web applications in Appirio Digital Studios",
-  "main": "index.js",
+  "main": "build/index.js",
   "author": "Eric Nograles <enograles@appirio.com>",
   "private": true,
   "engines": {
