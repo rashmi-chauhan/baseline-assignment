@@ -52,7 +52,9 @@
     "build": "./node_modules/.bin/babel src -d build",
     "start": "./node_modules/.bin/babel src -d build && cd build/client && ../../node_modules/.bin/next build && cd .. && node index.js",
     "precommit": "lint-staged",
-    "nodemon": "cd src && ../node_modules/.bin/nodemon --inspect=5858 --nolazy -r babel-register -w index.js"
+    "nodemon": "cd src && ../node_modules/.bin/nodemon --inspect=5858 --nolazy -r babel-register -w index.js",
+    "test": "./node_modules/.bin/jest",
+    "test:watch": "./node_modules/.bin/jest --watch"
   },
   "devDependencies": {
     "babel-jest": "^20.0.3",
