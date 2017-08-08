@@ -13,7 +13,8 @@ import './controllers/hello_world';
 Promise.promisifyAll(SwaggerExpress);
 
 let config = {
-  appRoot: path.join(__dirname, '..') // required config
+  appRoot: path.join(__dirname, '..'),
+  configDir: path.join(__dirname, './config')
 };
 
 export default async function api(app) {
