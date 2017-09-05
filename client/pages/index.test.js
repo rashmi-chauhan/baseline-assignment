@@ -8,14 +8,14 @@ function setup() {
     actions: {
       retrieveProfileFromToken: jest.fn()
     }
-  }
+  };
 
-  const enzymeWrapper = mount(<PageLanding {...props} />)
+  const enzymeWrapper = mount(<PageLanding {...props} />);
 
   return {
     props,
     enzymeWrapper
-  }
+  };
 }
 
 describe('pages/index.js', () => {

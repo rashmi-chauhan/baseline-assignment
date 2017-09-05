@@ -59,7 +59,7 @@ typings/
 
 # Transpiled ES2015 and Next.js code
 build
-src/client/.next
+client/.next
 
 # User-specific jetBrains items
 .idea/workspace.xml
