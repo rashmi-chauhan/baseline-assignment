@@ -60,6 +60,16 @@
       "git add"
     ]
   },
+  "jest": {
+    "moduleNameMapper": {
+      "^.+\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js",
+      "^.+\\.(gif|ttf|eot|svg|jpg|jpeg|png)$": "<rootDir>/__mocks__/fileMock.js"
+    },
+    "collectCoverageFrom": [
+      "client/**/*.js",
+      "api/**/*.js"
+    ]
+  },
   "scripts": {
     "build": "cd client && ../node_modules/.bin/next build && cd ..",
     "start": "npm run build && node index.js",

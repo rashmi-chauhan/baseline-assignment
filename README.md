@@ -28,7 +28,7 @@ This is the baseline for ADS' fully universal JavaScript web application.  It is
 
 1. Clone this repo
 1. `yarn install`
-1. `yarn run nodemon`
+1. `yarn run develop`
 1. Using your favorite debugger, attach to port 5858 to debug back-end code
 1. Open `http://localhost:3000` for the front-end and debug using Chrome DevTools
 
