@@ -1,6 +1,5 @@
 const path = require('path');
 const glob = require('glob');
-const webpack = require('webpack');
 
 module.exports = {
   webpack: (config, { dev }) => {
