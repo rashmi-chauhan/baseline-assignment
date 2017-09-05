@@ -13,10 +13,10 @@
           "module-resolver",
           {
             "root": [
-              "./src/client"
+              "./client"
             ],
             "alias": {
-              "styles": "./src/client/styles"
+              "styles": "./client/styles"
             },
             "cwd": "babelrc"
           }
@@ -39,10 +39,10 @@
           "module-resolver",
           {
             "root": [
-              "./build/client"
+              "./client"
             ],
             "alias": {
-              "styles": "./build/client/styles"
+              "styles": "./client/styles"
             },
             "cwd": "babelrc"
           }
@@ -60,6 +60,5 @@
     }
   },
   "sourceMaps": true,
-  "retainLines": true,
-  "ignore": ["*.test.js"]
+  "retainLines": true
 }
