@@ -68,3 +68,6 @@ client/.next
 .idea/inspectionProfiles
 .idea/jsLinters
 .idea/watcherTasks.xml
+
+# Certs
+*.pem

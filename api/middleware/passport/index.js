@@ -1,0 +1,18 @@
+const passport = require('passport');
+const SAMLProvider = require('./saml');
+
+module.exports = connectToPassport;
+
+function connectToPassport(app) {
+  passport.use(SAMLProvider(app));
+  app.use(passport.initialize());
+  return app;
+}
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
