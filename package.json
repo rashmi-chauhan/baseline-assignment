@@ -85,6 +85,7 @@
     "husky": "^0.14.3",
     "jest": "^20.0.4",
     "lint-staged": "^4.0.2",
+    "node-mocks-http": "^1.6.4",
     "nodemon": "^1.11.0",
     "prettier": "^1.5.3",
     "react-addons-test-utils": "^15.6.0",

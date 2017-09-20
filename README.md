@@ -9,7 +9,7 @@ This is the baseline for ADS' fully universal JavaScript web application.  It is
 
 ## Goals
 
-1. **Fully universal JavaScript**: Coding style must be the same on the back-end and front-end
+1. **Fully universal JavaScript**: Coding style mostly similar on the back-end and front-end
 2. **Keep developers in a flow**: Hot or live reloading must be built-in
 3. **Consistent approach to Authentication**: All authentication must be built-in to the back-end with little or no reliance on 3rd party services
 4. **Consistent front-end patterns**: Basics like routing, state management, and unit testing should already be built-in so a team can get up and go quickly
@@ -31,6 +31,11 @@ This is the baseline for ADS' fully universal JavaScript web application.  It is
 1. `yarn run develop`
 1. Using your favorite debugger, attach to port 5858 to debug back-end code
 1. Open `http://localhost:3000` for the front-end and debug using Chrome DevTools
+
+## Developing
+
+* [Client-side Development]()
+* [Server-side Development]()
 
 ## Unit Testing
 
