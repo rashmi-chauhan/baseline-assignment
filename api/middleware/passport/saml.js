@@ -44,6 +44,8 @@ function SAMLProvider(app) {
       session: false
     }),
     (req, res) => {
+      // TODO: This is where you'd query your own app DB table to cross-reference who this person is
+
       // TODO: You would redirect back to your SPA here with your *own* JWT to verify a successful login
       return res.json(req.user);
     }
