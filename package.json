@@ -6,7 +6,7 @@
   "author": "Eric Nograles <enograles@appirio.com>",
   "private": true,
   "engines": {
-    "node": "8.1.4"
+    "node": "8.4.0"
   },
   "dependencies": {
     "autoprefixer": "^7.1.2",
