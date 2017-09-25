@@ -1,3 +1,4 @@
+import connectAsAnonymous from './connectAsAnonymous';
 import connectAsAuthenticated from './connectAsAuthenticated';
 
-export { connectAsAuthenticated };
+export { connectAsAuthenticated, connectAsAnonymous };
