@@ -14,7 +14,7 @@ import configureStore, { history } from './redux/store';
 import { connectAsAnonymous } from './redux/connectors';
 
 // Routes
-import App from './App';
+import Root from './pages/Root';
 import NotFound from './pages/NotFound';
 
 const store = configureStore();
@@ -23,7 +23,7 @@ ReactDOM.render(
     <ConnectedRouter history={history}>
       <div>
         <Switch>
-          <Route exact path="/" component={connectAsAnonymous(App)} />
+          <Route exact path="/" component={connectAsAnonymous(Root)} />
           <Route component={NotFound} />
         </Switch>
       </div>
