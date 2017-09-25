@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './assets/styles/index.scss';
-import './assets/icons/utility-sprite/svg/symbols.svg';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import { Route, Switch } from 'react-router';
