@@ -9,14 +9,10 @@
             "name": "Debug Web App",
             "type": "node",
             "request": "launch",
-            "program": "${workspaceRoot}/src/index.js",
+            "program": "${workspaceRoot}/index.js",
             "stopOnEntry": false,
             "args": [],
-            "cwd": "${workspaceRoot}/src",
             "runtimeArgs": [
-                "--nolazy",
-                "-r",
-                "babel-register"
             ],
             "env": {
                 "NODE_ENV": "development",

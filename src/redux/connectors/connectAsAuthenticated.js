@@ -1,7 +1,6 @@
 import React from 'react';
-import Router from 'next/router';
-import store from '../store';
-import withRedux from 'next-redux-wrapper';
+import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import { LOCAL_STORAGE, PROFILE_STATUS } from '../../constants';
 import * as ProfileActionCreators from '../actions/profile';
@@ -9,9 +8,9 @@ import * as ProfileActionCreators from '../actions/profile';
 export default function connectAsAuthenticated(WrappedComponent) {
   class ConnectedComponent extends React.Component {
     componentDidMount() {
-      const { userActions, push } = this.props;
+      const { profileActions, push } = this.props;
       if (!localStorage[LOCAL_STORAGE.TOKEN]) {
-        return Router.push('/');
+        push('/');
       }
       if (localStorage[LOCAL_STORAGE.TOKEN]) {
         let auth = JSON.parse(localStorage[LOCAL_STORAGE.TOKEN]);
@@ -22,7 +21,7 @@ export default function connectAsAuthenticated(WrappedComponent) {
     componentWillReceiveProps(nextProps) {
       const { push } = this.props;
       if (nextProps.profile.status !== PROFILE_STATUS.AUTHENTICATED) {
-        Router.push('/login');
+        push('/login');
       }
     }
 
@@ -40,11 +39,10 @@ export default function connectAsAuthenticated(WrappedComponent) {
 
   function mapDispatchToProps(dispatch) {
     return {
+      push: bindActionCreators(push, dispatch),
       profileActions: bindActionCreators(ProfileActionCreators, dispatch)
     };
   }
 
-  return withRedux(store, mapStateToProps, mapDispatchToProps)(
-    ConnectedComponent
-  );
+  return connect(mapStateToProps, mapDispatchToProps)(ConnectedComponent);
 }

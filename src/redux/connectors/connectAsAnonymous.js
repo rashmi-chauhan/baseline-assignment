@@ -1,7 +1,5 @@
 import React from 'react';
-import Router from 'next/router';
-import store from '../store';
-import withRedux from 'next-redux-wrapper';
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as ProfileActionCreators from '../actions/profile';
 
@@ -25,7 +23,5 @@ export default function connectAsAnonymous(WrappedComponent) {
     };
   }
 
-  return withRedux(store, mapStateToProps, mapDispatchToProps)(
-    ConnectedComponent
-  );
+  return connect(mapStateToProps, mapDispatchToProps)(ConnectedComponent);
 }
