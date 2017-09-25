@@ -28,9 +28,11 @@ This is the baseline for ADS' fully universal JavaScript web application.  It is
 
 1. Clone this repo
 1. `yarn install`
-1. `yarn run develop`
-1. Using your favorite debugger, attach to port 5858 to debug back-end code
-1. Open `http://localhost:3000` for the front-end and debug using Chrome DevTools
+1. `yarn run develop:client`
+1. Open another terminal and execute `yarn run develop:api`
+1. Using your favorite debugger, attach to port 5858 to debug API code
+1. Execute a GET on `http://localhost:9000/api/hello?name=me` in Postman to get a response from the Swagger API
+1. Open `http://localhost:9001` for the front-end and debug using Chrome DevTools
 
 ## Developing
 
@@ -48,7 +50,7 @@ This is the baseline for ADS' fully universal JavaScript web application.  It is
 
 ### Front-end (/src/client)
 
-* [Next.js](https://www.npmjs.org/next): React.js scaffold with built-in developer tooling and server-side rendering
+* [create-react-app](https://github.com/facebookincubator/create-react-app): The Facebook standard React scaffolder
 * [Redux](https://www.npmjs.org/redux): App-wide/shared state management
 * [redux-thunk](https://www.npmjs.org/redux-thunk): Asynchronous side-effects for Redux
 * [redux-logger](https://www.npmjs.org/redux-loger): Debugging tool for Redux
