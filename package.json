@@ -43,6 +43,7 @@
     "raw-loader": "^0.5.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-lightning-design-system": "^2.4.0",
     "react-redux": "^5.0.5",
     "redis": "^2.7.1",
     "redux": "^3.7.2",
