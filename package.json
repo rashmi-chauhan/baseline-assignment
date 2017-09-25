@@ -72,7 +72,7 @@
   },
   "scripts": {
     "build": "cd client && ../node_modules/.bin/next build && cd ..",
-    "start": "npm run build && node index.js",
+    "start": "node index.js",
     "precommit": "lint-staged",
     "develop": "./node_modules/.bin/nodemon --inspect=5858 --nolazy -w index.js",
     "swagger:edit": "swagger_swagger_fileName=api/swagger/swagger.yaml swagger project edit",

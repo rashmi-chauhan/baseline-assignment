@@ -1,11 +1,9 @@
-export const ActionTypes = {
-  RECEIVE_PROFILE: 'RECEIVE_PROFILE'
-};
+import { PROFILE } from '../actionTypes';
 
 export function retrieveProfileFromToken(accessToken) {
-  return (dispatch, store) => {
+  return async (dispatch, store) => {
     dispatch({
-      type: RECEIVE_PROFILE,
+      type: PROFILE.RETRIEVE_PROFILE_FROM_TOKENs,
       profile: {
         firstName: 'TODO: firstName',
         lastName: 'TODO: lastName',

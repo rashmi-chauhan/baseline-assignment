@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import React from 'react';
+import { connectAsAuthenticated } from '../../redux/connectors';
 
-export default class PageUser extends React.Component {
+class PageUser extends React.Component {
   render() {
     let message = process.env.WEBAPP_MESSAGE || 'no message found';
     return (
@@ -13,3 +14,5 @@ export default class PageUser extends React.Component {
     );
   }
 }
+
+export default connectAsAuthenticated(PageUser);
