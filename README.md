@@ -34,6 +34,14 @@ This is the baseline for ADS' fully universal JavaScript web application.  It is
 1. Execute a GET on `http://localhost:9000/api/hello?name=me` in Postman to get a response from the Swagger API
 1. Open `http://localhost:9001` for the front-end and debug using Chrome DevTools
 
+## Non-Contributor/Containerized Quick Scaffold
+
+1. At the root of this repo, execute `docker-compose build`
+    * **Note**: Presumably, you're going to change the source code of the baseline. Make sure to run `docker-compose build` to update the Docker container if you like the app in a containerized fashion
+1. `docker-compose up -d`
+1. Open `http://localhost:63002` in a browser for the fully assembled application
+1. To spin down, at the root of this repo, execute `docker-compose down`
+
 ## Developing
 
 * [Client-side Development]()
