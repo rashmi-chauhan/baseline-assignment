@@ -1,0 +1,29 @@
+version: '3'
+services:
+  pg:
+    image: "mdillon/postgis"
+    ports:
+      - 63000:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=ads_webapp_baseline
+  redis:
+    image: redis:3.2
+    ports:
+      - 63001:6379
+  app:
+    build: .
+    depends_on:
+      - pg
+      - redis
+    links:
+      - pg
+      - redis
+    ports:
+      - 63002:3000
+    environment:
+      DATABASE_URL: postgres://postgres:password@pg:5432/ads_webapp_baseline
+      REDIS_SOCKETIO_HOST: redis
+    command: ["./wait-for-it.sh", "pg:5432", "--", "npm", "run", "start:docker"]
+    # restart: always

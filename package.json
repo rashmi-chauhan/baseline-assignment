@@ -63,6 +63,7 @@
     "build": "react-scripts build",
     "heroku-postbuild": "./node_modules/.bin/react-scripts build",
     "start": "node index.js",
+    "start:docker": "npm run heroku-postbuild && npm start",
     "precommit": "lint-staged",
     "develop:api": "PORT=9000 ./node_modules/.bin/nodemon --inspect=5858 --watch api -V --nolazy index.js",
     "develop:client": "REACT_APP_REDUX_DEBUGGING_ENABLED=true PORT=9001 react-scripts start",
