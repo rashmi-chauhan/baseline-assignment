@@ -1,6 +1,6 @@
 version: '3'
 services:
-  pg:
+  app_postgres:
     image: "mdillon/postgis"
     ports:
       - 63000:5432
@@ -8,22 +8,26 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=ads_webapp_baseline
-  redis:
+  app_redis:
     image: redis:3.2
     ports:
       - 63001:6379
   app:
     build: .
+    volumes:
+      - .:/app
     depends_on:
-      - pg
-      - redis
+      - app_postgres
+      - app_redis
     links:
-      - pg
-      - redis
+      - app_postgres
+      - app_redis
     ports:
-      - 63002:3000
+      - 63002:3000 # react-scripts-start
+      - 63003:3001 # node index.js
+      - 63004:5858 # debugging port for node index.js
     environment:
-      DATABASE_URL: postgres://postgres:password@pg:5432/ads_webapp_baseline
-      REDIS_SOCKETIO_HOST: redis
-    command: ["./wait-for-it.sh", "pg:5432", "--", "npm", "run", "start:docker"]
+      DATABASE_URL: postgres://postgres:password@app_postgres:5432/ads_webapp_baseline
+      REDIS_URL: redis://app_redis:6379
+    command: ["./wait-for-it.sh", "pg:5432", "--", "npm", "run", "develop:docker"]
     # restart: always
