@@ -23,11 +23,11 @@ services:
       - app_postgres
       - app_redis
     ports:
-      - 63002:3000 # react-scripts-start
-      - 63003:3001 # node index.js
-      - 63004:5858 # debugging port for node index.js
+      - 63002:3000 # React Development Server
+      - 63003:3001 # Web API
+      - 63004:5858 # Debugging port for Web API
     environment:
       DATABASE_URL: postgres://postgres:password@app_postgres:5432/ads_webapp_baseline
       REDIS_URL: redis://app_redis:6379
     command: ["./wait-for-it.sh", "pg:5432", "--", "npm", "run", "develop:docker"]
-    # restart: always
+    restart: always

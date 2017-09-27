@@ -22,25 +22,41 @@ This is the baseline for ADS' fully universal JavaScript web application.  It is
 1. Node v8 or higher ([Node Version Manager](https://github.com/creationix/nvm) highly recommended)
 1. [Docker](https://www.docker.com/)
     * **NOTE**: Docker is only used for fast local scaffolding and is not used by the release process
-1. `npm install -g yarn`
+1. At the root of this repo, execute `docker-compose build`
 
 ## Running and Debugging
 
-1. Clone this repo
-1. `yarn install`
-1. `yarn run develop:client`
-1. Open another terminal and execute `yarn run develop:api`
-1. Using your favorite debugger, attach to port 5858 to debug API code
-1. Execute a GET on `http://localhost:9000/api/hello?name=me` in Postman to get a response from the Swagger API
-1. Open `http://localhost:9001` for the front-end and debug using Chrome DevTools
+1. `docker-compose up`
+    * **Note**: This will take a minute or two as dependencies are built out fresh in a container
+1. Open `http://localhost:63002` in a browser for the React SPA
+1. Open `http://localhost:63003` in Postman for the Web API
+1. To debug the Web API, attach your favorite Node Editor/IDE's debugger to `localhost:63004`
+1. To stop all the code and infrastructure, press Ctrl + C
+1. To delete all of the infrastructure and start from scratch, at the root of this repo, execute `docker-compose down && docker-compose up`
 
-## Non-Contributor/Containerized Quick Scaffold
+## Sample VS Code Debugger Configuration
 
-1. At the root of this repo, execute `docker-compose build`
-    * **Note**: Presumably, you're going to change the source code of the baseline. Make sure to run `docker-compose build` to update the Docker container if you like the app in a containerized fashion
-1. `docker-compose up -d`
-1. Open `http://localhost:63002` in a browser for the fully assembled application
-1. To spin down, at the root of this repo, execute `docker-compose down`
+```json
+{
+    // Use IntelliSense to learn about possible Node.js debug attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Attach to Nodemon",
+            "type": "node",
+            "request": "attach",
+            "port": 63004,
+            "address": "localhost",
+            "remoteRoot": "/app",
+            "localRoot": "${workspaceRoot}",
+            "protocol": "inspector",
+            "restart": true
+        }
+    ]
+}
+```
 
 ## Developing
 

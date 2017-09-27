@@ -4,33 +4,16 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-    
-        {
-            "name": "Debug Web App",
-            "type": "node",
-            "request": "launch",
-            "program": "${workspaceRoot}/index.js",
-            "stopOnEntry": false,
-            "args": [],
-            "runtimeArgs": [
-            ],
-            "env": {
-                "NODE_ENV": "development",
-                "RECREATE_SCHEMA": "true",
-                "API_SECRET": "shhh_its_a_secret",
-                "DATABASE_URL": "postgres://postgres@127.0.0.1:61001/graphql_baseline",
-                "REDIS_URL": "redis://127.0.0.1:61000",
-                "REDIS_USER_SESSIONS_DB": "1",
-                "WEBAPP_MESSAGE": "shhh, don't tell anyone"
-            },
-            "console": "internalConsole"
-        },
+        
         {
             "name": "Attach to Nodemon",
             "type": "node",
             "request": "attach",
-            "port": 5858,
+            "port": 63004,
             "address": "localhost",
+            "remoteRoot": "/app",
+            "localRoot": "${workspaceRoot}",
+            "protocol": "inspector",
             "restart": true
         }
     ]
