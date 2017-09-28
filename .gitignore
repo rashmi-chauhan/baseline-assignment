@@ -71,3 +71,6 @@ client/.next
 
 # Certs
 *.pem
+
+# Jest artifacts
+jest*
