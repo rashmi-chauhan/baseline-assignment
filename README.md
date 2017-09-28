@@ -29,10 +29,20 @@ This is the baseline for ADS' fully universal JavaScript web application.  It is
 1. `docker-compose up`
     * **Note**: This will take a minute or two as dependencies are built out fresh in a container
 1. Open `http://localhost:63002` in a browser for the React SPA
+   * **Note**: Any changes in `src` will reflect in your Docker container automatically
 1. Open `http://localhost:63003` in Postman for the Web API
+    * **Note**: Any changes in `api` will reflect in your Docker container automatically
 1. To debug the Web API, attach your favorite Node Editor/IDE's debugger to `localhost:63004`
 1. To stop all the code and infrastructure, press Ctrl + C
 1. To delete all of the infrastructure and start from scratch, at the root of this repo, execute `docker-compose down && docker-compose up`
+
+## Ongoing Development
+
+This scaffold is completely containerized in Docker, meaning you do not have to worry about any local dependencies apart from Docker and VS Code.
+
+However, there is one caveat.  If you add any new dependencies to `package.json` for either the server or client-side, be sure to execute a new `docker-compose build` and then `docker-compose up` to have the container reflect the new dependencies.
+
+The reason for this is that certain binary-based distributions, such as `bcrypt` and `node-sass`, will only build for their specific platform.  To counteract this and keep the container isolated, we simply mount the source code folders from your host to the container and ignore `node_modules`.
 
 ## Sample VS Code Debugger Configuration
 

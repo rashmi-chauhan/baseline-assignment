@@ -66,7 +66,7 @@
     "precommit": "lint-staged",
     "develop:api": "./node_modules/.bin/nodemon --inspect=0.0.0.0:5858 --nolazy index.js",
     "develop:client": "REACT_APP_REDUX_DEBUGGING_ENABLED=true ./node_modules/.bin/react-scripts start",
-    "develop:docker": "rm -rf ./node_modules && yarn install && (yarn run develop:api & yarn run develop:client & yarn run test:watch)",
+    "develop:docker": "yarn run develop:api & yarn run develop:client & yarn run test:watch",
     "swagger:edit": "swagger_swagger_fileName=api/swagger/swagger.yaml swagger project edit",
     "test": "./node_modules/.bin/jest",
     "test:watch": "./node_modules/.bin/jest --watchAll"

@@ -15,7 +15,10 @@ services:
   app:
     build: .
     volumes:
-      - .:/app
+      - ./api:/app/api
+      - ./public:/app/public
+      - ./src:/app/src
+      - ./build:/app/build
     depends_on:
       - app_postgres
       - app_redis
