@@ -65,7 +65,7 @@
     "heroku-postbuild": "./node_modules/.bin/react-scripts build",
     "start": "node index.js",
     "precommit": "lint-staged",
-    "develop:api": "./node_modules/.bin/nodemon --inspect=0.0.0.0:5858 --nolazy index.js",
+    "develop:api": "./node_modules/.bin/nodemon --exec \"yarn install && node\" --inspect=0.0.0.0:5858 --nolazy index.js",
     "develop:client": "REACT_APP_REDUX_DEBUGGING_ENABLED=true ./node_modules/.bin/react-scripts start",
     "develop:docker": "yarn run develop:api & yarn run develop:client & yarn run test:watch",
     "swagger:edit": "swagger_swagger_fileName=api/swagger/swagger.yaml swagger project edit",
