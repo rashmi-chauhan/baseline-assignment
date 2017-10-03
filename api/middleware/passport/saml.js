@@ -60,6 +60,7 @@ function SAMLProvider(app) {
 }
 
 function verify(profile, next) {
+  // Will be embedded in req.user
   let email =
     profile[
       'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'

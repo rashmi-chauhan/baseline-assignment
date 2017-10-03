@@ -3,7 +3,7 @@ services:
   app_postgres:
     image: "mdillon/postgis"
     ports:
-      - 63000:5432
+      - 64000:5432
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
@@ -11,10 +11,13 @@ services:
   app_redis:
     image: redis:3.2
     ports:
-      - 63001:6379
+      - 64001:6379
   app:
     build: .
     volumes:
+      - ./.env:/app/.env
+      - ./index.js:/app/index.js
+      - ./package.json:/app/package.json
       - ./api:/app/api
       - ./public:/app/public
       - ./src:/app/src
@@ -26,9 +29,9 @@ services:
       - app_postgres
       - app_redis
     ports:
-      - 63002:3000 # React Development Server
-      - 63003:3001 # Web API
-      - 63004:5858 # Debugging port for Web API
+      - 64002:3000 # React Development Server
+      - 64003:3001 # Web API
+      - 64004:5858 # Debugging port for Web API
     environment:
       DATABASE_URL: postgres://postgres:password@app_postgres:5432/ads_webapp_baseline
       REDIS_URL: redis://app_redis:6379

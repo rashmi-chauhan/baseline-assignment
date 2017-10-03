@@ -1,10 +1,12 @@
 const passport = require('passport');
 const SAMLProvider = require('./saml');
+const SalesforceProvider = require('./salesforce');
 
 module.exports = connectToPassport;
 
 function connectToPassport(app) {
   passport.use(SAMLProvider(app));
+  passport.use(SalesforceProvider(app));
   app.use(passport.initialize());
   return app;
 }
