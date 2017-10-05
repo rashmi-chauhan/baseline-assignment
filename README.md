@@ -28,11 +28,11 @@ This is the baseline for ADS' fully universal JavaScript web application.  It is
 
 1. `docker-compose up`
     * **Note**: This will take a minute or two as dependencies are built out fresh in a container
-1. Open `http://localhost:63002` in a browser for the React SPA
+1. Open `http://localhost:64002` in a browser for the React SPA
    * **Note**: Any changes in `src` will reflect in your Docker container automatically
-1. Open `http://localhost:63003` in Postman for the Web API
+1. Open `http://localhost:64003` in Postman for the Web API
     * **Note**: Any changes in `api` will reflect in your Docker container automatically
-1. To debug the Web API, attach your favorite Node Editor/IDE's debugger to `localhost:63004`
+1. To debug the Web API, attach your favorite Node Editor/IDE's debugger to `localhost:64004`
 1. To stop all the code and infrastructure, press Ctrl + C
 1. To delete all of the infrastructure and start from scratch, at the root of this repo, execute `docker-compose down && docker-compose up`
 
