@@ -59,7 +59,6 @@ We expose ports on the container to allow the best of both worlds: isolated and 
 
 ### NPM Tasks
 
-* **yarn run develop:docker**: Executes the `develop` and `test:watch` tasks in parallel
 * **yarn run develop:api**: Executes Nodemon (exposing Node Debugger to the container's port 5858) of your server code
 * **yarn run develop:client**: Starts the create-react-app dev server with Redux Debugging enabled
 * **yarn run swagger:edit**: Runs Swagger Project Editor on the container's port 3002
