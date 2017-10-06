@@ -1,4 +1,4 @@
-# ads-webapp-baseline
+# ads-baseline-webapp
 
 * [Live Demo - Dev Mode](https://ads-webapp-baseline-dev.herokuapp.com)
 * [Live Demo - Production Mode](https://ads-webapp-baseline-stg.herokuapp.com)
