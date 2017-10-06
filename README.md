@@ -9,76 +9,70 @@ This is the baseline for ADS' fully universal JavaScript web application.  It is
 
 ## Goals
 
-1. **Fully universal JavaScript**: Coding style mostly similar on the back-end and front-end
-2. **Keep developers in a flow**: Hot or live reloading must be built-in
-3. **Consistent approach to Authentication**: All authentication must be built-in to the back-end with little or no reliance on 3rd party services
-4. **Consistent front-end patterns**: Basics like routing, state management, and unit testing should already be built-in so a team can get up and go quickly
-5. **Consistent back-end patterns**: Basics like ORM's, query builders, middleware, route config, and unit testing should already be built in so a team can get up and go quickly
-6. **Brainless Heroku and 12FA support**: All things needed for quick Heroku deployments should already be baked in, including good 12FA patterns (specifically, environment variable-driven apps)
-7. **Consistent code styling**: Automated code formatting and warnings for anti-patterns built-in
+1. **Developers onboarded in 15 minutes or less**: No worries about dependency installs or stacks of dev machine setup manuals. Just get up and go.
+1. **Keep developers in a flow**: Hot or live reloading must be built-in
+1. **Consistent approach to Authentication**: All authentication must be built-in to the back-end with little or no reliance on 3rd party services
+1. **Consistent back-end patterns**: Basics like ORM's, query builders, middleware, route config, and unit testing should already be built in so a team can get up and go quickly
+1. **Brainless Heroku and 12FA support**: All things needed for quick Heroku deployments should already be baked in, including good 12FA patterns (specifically, environment variable-driven apps)
+1. **Consistent code styling**: Automated code formatting and warnings for anti-patterns built-in
 
 ## Prerequisites
 
-1. Node v8 or higher ([Node Version Manager](https://github.com/creationix/nvm) highly recommended)
+1. [Visual Studio Code](https://code.visualstudio.com/)
 1. [Docker](https://www.docker.com/)
-    * **NOTE**: Docker is only used for fast local scaffolding and is not used by the release process
 1. At the root of this repo, execute `docker-compose build`
 
-## Running and Debugging
+## Quick Setup
 
-1. `docker-compose up`
-    * **Note**: This will take a minute or two as dependencies are built out fresh in a container
-1. Open `http://localhost:64002` in a browser for the React SPA
-   * **Note**: Any changes in `src` will reflect in your Docker container automatically
-1. Open `http://localhost:64003` in Postman for the Web API
-    * **Note**: Any changes in `api` will reflect in your Docker container automatically
+1. At the root of this repo, execute `docker-compose up`
+1. Once you see your container running as indicated by the message `LOG: database system is ready to accept connections`, execute `docker exec -i -t ads_webapp_baseline /bin/bash` to open a bash into the container
+1. Execute `yarn run develop:docker` in the bash of the container
+1. Open `http://localhost:64003/api/hello?name=me` in a browser for the Web API
+   * **Note**: Any changes in `api` will reflect in your Docker container automatically thanks to Nodemon
 1. To debug the Web API, attach your favorite Node Editor/IDE's debugger to `localhost:64004`
+1. Open `http://localhost:64002` for the `create-react-app` dev server
+1. Open `http://localhost:64005` for the Swagger Project Editor
 1. To stop all the code and infrastructure, press Ctrl + C
 1. To delete all of the infrastructure and start from scratch, at the root of this repo, execute `docker-compose down && docker-compose up`
 
-## Ongoing Development
+## Features
 
 This scaffold is completely containerized in Docker, meaning you do not have to worry about any local dependencies apart from Docker and VS Code.
 
-However, there is one caveat.  If you add any new dependencies to `package.json` for either the server or client-side, be sure to execute a new `docker-compose build` and then `docker-compose up` to have the container reflect the new dependencies.
+We expose ports on the container to allow the best of both worlds: isolated and consistent container development with the convenience of local development.
 
-The reason for this is that certain binary-based distributions, such as `bcrypt` and `node-sass`, will only build for their specific platform.  To counteract this and keep the container isolated, we simply mount the source code folders from your host to the container and ignore `node_modules`.
+### NPM Tasks
 
-## Sample VS Code Debugger Configuration
+* **yarn run develop:docker**: Executes the `develop` and `test:watch` tasks in parallel
+* **yarn run develop:api**: Executes Nodemon (exposing Node Debugger to the container's port 5858) of your server code
+* **yarn run develop:client**: Starts the create-react-app dev server with Redux Debugging enabled
+* **yarn run swagger:edit**: Runs Swagger Project Editor on the container's port 3002
+* **yarn test**: Single run of Jest on any `*.test.js* unit test file
+* **yarn run test:watch**: Runs an ongoing, live reloading Jest test watcher for any `*.test.js` unit test file
 
-```json
-{
-    // Use IntelliSense to learn about possible Node.js debug attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Attach to Nodemon",
-            "type": "node",
-            "request": "attach",
-            "port": 63004,
-            "address": "localhost",
-            "remoteRoot": "/app",
-            "localRoot": "${workspaceRoot}",
-            "protocol": "inspector",
-            "restart": true
-        }
-    ]
-}
-```
+### Adding New Dependencies
 
-## Developing
+Your container is the source of your code going forward.  While it has a localized `node_modules` on both server and client to prevent platform-specific compilation problems (with things like `bcrypt`), you can still manage dependencies within and it will reflect on your local `package.json`.
 
-* [Client-side Development]()
-* [Server-side Development]()
+To do this, you simply need to bash into the container by executing: `docker exec -i -t ads_webapp_baseline /bin/bash`.  This will open a terminal in the container running your code.  You can then add dependencies as normal, using `yarn add some_library`.
 
-## Unit Testing
+Note that you can execute this command in multiple _local_ terminals to achieve the same effect as having multiple bash terminals in a pure local setup.
 
-**Convention**: Only files with a `.test.js` extension will be run by Jest
+To exit from the container's bash, simply execute `exit`
 
-* **One-time Tests Run**: `yarn test`
-* **Live-Reloading Unit Tests**: `yarn run test:watch`
+### Prettier
+
+This scaffold comes with a `prettier` precommit Git hook.  In other words, your JS can be in whatever style you want as you develop.  When you stage your commits to git, `prettier` will automatically format your code to an opinionated standard.
+
+## Troubleshooting
+
+### ENOSPC Issues With Docker
+
+If you are doing heavy development in Docker and aren't actively removing volumes, you might run into an ENOSPC problem when you execute `docker-compose build` or `docker-compose up`.  
+
+To alleviate this, execute `docker volume rm $(docker volume ls -qf dangling=true)` in a Terminal then attempt to do another `docker-compose build` or `docker-compose up`.
+
+This command deletes and "dangling" volumes -- that is, any volumes that are orphaned because of prior `docker-compose build` or container removals.
 
 ## Architecture
 

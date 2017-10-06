@@ -1,6 +1,7 @@
 version: '3'
 services:
   app_postgres:
+    container_name: ads_webapp_baseline_postgres
     image: "mdillon/postgis"
     ports:
       - 64000:5432
@@ -9,10 +10,12 @@ services:
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=ads_webapp_baseline
   app_redis:
+    container_name: ads_webapp_baseline_redis
     image: redis:3.2
     ports:
       - 64001:6379
   app:
+    container_name: ads_webapp_baseline
     build: .
     volumes:
       - ./.env:/app/.env
@@ -32,8 +35,9 @@ services:
       - 64002:3000 # React Development Server
       - 64003:3001 # Web API
       - 64004:5858 # Debugging port for Web API
+      - 64005:3002 # Swagger Project Editor
     environment:
       DATABASE_URL: postgres://postgres:password@app_postgres:5432/ads_webapp_baseline
       REDIS_URL: redis://app_redis:6379
-    command: ["./wait-for-it.sh", "pg:5432", "--", "npm", "run", "develop:docker"]
+    command: ["node", "docker.js"]
     restart: always
