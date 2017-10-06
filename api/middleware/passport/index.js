@@ -5,8 +5,14 @@ const SalesforceProvider = require('./salesforce');
 module.exports = connectToPassport;
 
 function connectToPassport(app) {
-  passport.use(SAMLProvider(app));
-  passport.use(SalesforceProvider(app));
+  if (process.env.AUTH_SAML_ENABLED === 'true') {
+    passport.use(SAMLProvider(app));
+  }
+  
+  if (process.env.AUTH_SALESFORCE_ENABLED === 'true') {
+    passport.use(SalesforceProvider(app));
+  }
+  
   app.use(passport.initialize());
   return app;
 }

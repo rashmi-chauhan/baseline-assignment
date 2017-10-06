@@ -39,5 +39,7 @@ services:
     environment:
       DATABASE_URL: postgres://postgres:password@app_postgres:5432/ads_webapp_baseline
       REDIS_URL: redis://app_redis:6379
+      AUTH_SAML_ENABLED: "false"
+      AUTH_SALESFORCE_ENABLED: "false"
     command: ["node", "docker.js"]
     restart: always
