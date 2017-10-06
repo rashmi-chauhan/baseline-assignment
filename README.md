@@ -24,16 +24,32 @@ This is the baseline for ADS' fully universal JavaScript web application.  It is
 
 ## Quick Setup
 
+### Scaffolding
+
 1. At the root of this repo, execute `docker-compose up`
-1. Once you see your container running as indicated by the message `LOG: database system is ready to accept connections`, execute `./docker_bash.sh` to open a bash into the container
-1. Execute `yarn run develop:docker` in the bash of the container
+1. Once you see your container running as indicated by the message `LOG: database system is ready to accept connections`
+1. To stop all the code and infrastructure, press Ctrl + C from this terminal
+1. To delete all of the infrastructure and start from scratch, at the root of this repo, execute `docker-compose down && ./docker_clean.sh && docker-compose up`
+
+### Web API
+
+1. Open a terminal and execute `./docker_bash.sh` to open a bash into the container
+1. Execute `yarn run develop:api` in the bash of the container
 1. Open `http://localhost:64003/api/hello?name=me` in a browser for the Web API
    * **Note**: Any changes in `api` will reflect in your Docker container automatically thanks to Nodemon
 1. To debug the Web API, attach your favorite Node Editor/IDE's debugger to `localhost:64004`
+
+### Web Client
+
+1. Open a terminal and execute `./docker_bash.sh` to open a bash into the container
+1. Execute `yarn run develop:client` in the bash of the container
 1. Open `http://localhost:64002` for the `create-react-app` dev server
+
+### Swagger Project Editor
+
+1. Open a terminal and execute `./docker_bash.sh` to open a bash into the container
+1. Execute `yarn run swagger:edit` in the bash of the container
 1. Open `http://localhost:64005` for the Swagger Project Editor
-1. To stop all the code and infrastructure, press Ctrl + C
-1. To delete all of the infrastructure and start from scratch, at the root of this repo, execute `docker-compose down && docker-compose up`
 
 ## Features
 
