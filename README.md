@@ -25,7 +25,7 @@ This is the baseline for ADS' fully universal JavaScript web application.  It is
 ## Quick Setup
 
 1. At the root of this repo, execute `docker-compose up`
-1. Once you see your container running as indicated by the message `LOG: database system is ready to accept connections`, execute `docker exec -i -t ads_webapp_baseline /bin/bash` to open a bash into the container
+1. Once you see your container running as indicated by the message `LOG: database system is ready to accept connections`, execute `./docker_bash.sh` to open a bash into the container
 1. Execute `yarn run develop:docker` in the bash of the container
 1. Open `http://localhost:64003/api/hello?name=me` in a browser for the Web API
    * **Note**: Any changes in `api` will reflect in your Docker container automatically thanks to Nodemon
@@ -54,7 +54,7 @@ We expose ports on the container to allow the best of both worlds: isolated and 
 
 Your container is the source of your code going forward.  While it has a localized `node_modules` on both server and client to prevent platform-specific compilation problems (with things like `bcrypt`), you can still manage dependencies within and it will reflect on your local `package.json`.
 
-To do this, you simply need to bash into the container by executing: `docker exec -i -t ads_webapp_baseline /bin/bash`.  This will open a terminal in the container running your code.  You can then add dependencies as normal, using `yarn add some_library`.
+To do this, you simply need to bash into the container by executing: `./docker_bash.sh`.  This will open a terminal in the container running your code.  You can then add dependencies as normal, using `yarn add some_library`.
 
 Note that you can execute this command in multiple _local_ terminals to achieve the same effect as having multiple bash terminals in a pure local setup.
 

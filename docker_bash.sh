@@ -1,0 +1,1 @@
+docker exec -i -t ads_webapp_baseline /bin/bash
