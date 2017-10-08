@@ -38,6 +38,8 @@ services:
       - 64005:3002 # Swagger Project Editor
     environment:
       DATABASE_URL: postgres://postgres:password@app_postgres:5432/ads_webapp_baseline
+      POSTGRES_LOGGING: "true" # Logs out every query that Postgres runs through Sequelize
+      RECREATE_SCHEMA: "true" # Nukes the database on every refresh
       REDIS_URL: redis://app_redis:6379
       AUTH_SAML_ENABLED: "false"
       AUTH_SALESFORCE_ENABLED: "false"

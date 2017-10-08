@@ -6,6 +6,7 @@ const Promise = require('bluebird');
 const path = require('path');
 const connectToPassport = require('./middleware/passport');
 const cors = require('cors');
+const models = require('./models');
 
 // Promisify Swagger
 Promise.promisifyAll(SwaggerExpress);
@@ -24,5 +25,8 @@ async function api(app) {
 
   const swaggerExpress = await SwaggerExpress.createAsync(config);
   swaggerExpress.register(app);
+
+  await models.Migrations.MigratePermission();
+  await models.Migrations.MigrateUser();
   return app;
 }
