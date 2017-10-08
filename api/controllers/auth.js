@@ -10,7 +10,7 @@ module.exports = {
 
 async function login(req, res) {
   let userEmail = await UserEmail.findOne({
-    where: { email: req.body.email }
+    where: { email: req.body.email, is_primary: true }
   });
 
   if (!userEmail) {
