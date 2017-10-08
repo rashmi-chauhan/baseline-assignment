@@ -9,8 +9,12 @@ const redisClient = redis.createClient({
   url: `${REDIS.URL}`
 });
 
+async function set(redisDatabase, key, value) {
+  return await redisClient.multi()
+    .select(redisDatabase)
+    .set(key, value)
+    .execAsync();
+}
 module.exports = {
-  userSessions: async () => {
-    return await redisClient.selectAsync(REDIS.USER_SESSIONS_DB);
-  }
+  set
 };

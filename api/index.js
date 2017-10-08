@@ -20,6 +20,7 @@ let config = {
 
 async function api(app) {
   app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(bodyParser.json());
   app.use(cors());
   app = connectToPassport(app);
 
