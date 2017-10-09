@@ -44,7 +44,8 @@ async function login(req, res) {
 async function refresh(req, res) {
   try {
     let decoded = await jwtService.verifyToken(req.body.refresh_token);
-    if (!decoded.refresh_token) {
+    let issuedToken = await redisService.get(REDIS.REFRESH_TOKENS_DB, req.body.refresh_token);
+    if (!decoded.refresh_token || !issuedToken) {
       throw new Error(`Invalid token`);
     }
 
@@ -59,6 +60,6 @@ async function refresh(req, res) {
       token_type: 'Bearer'
     });
   } catch (error) {
-    return res.status(401).json({ message: `Unauthorized access` });
+    return res.status(401).json({ message: error.message || `Unauthorized access detected` });
   }
 }
