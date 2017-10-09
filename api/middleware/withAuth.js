@@ -4,7 +4,6 @@ const jwtService = require('../services/jwt');
 module.exports = function withAuth(routeHandler) {
   return async (req, res) => {
     try {
-      winston.info('This is from withAuth middleware');
       let authorization = req.headers['authorization'] || '';
       let token = authorization.replace('Bearer ', '');
       let decoded = await jwtService.verifyToken(token);

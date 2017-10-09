@@ -30,6 +30,7 @@ async function login(req, res) {
     .json({message: `Unauthorized access`});
   }
 
+  // Note: A JWT is *signed* not *encrypted*. The best approach is to sign an object with the *minimally needed* information to identify a person
   let {accessToken, refreshToken} = await jwtService.sign({
     userId: user.id
   });
