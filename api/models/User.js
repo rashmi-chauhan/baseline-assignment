@@ -1,4 +1,3 @@
-
 const { STRING, TEXT, BOOLEAN, UUID, UUIDV4 } = require('sequelize');
 const { DEFAULT_MODEL_SETTINGS } = require('./config');
 const sequelize = require('../services/sequelize');
@@ -143,4 +142,4 @@ module.exports = {
   UserPermission,
   UserPermissionGroup,
   migrate
-}
+};

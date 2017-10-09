@@ -8,11 +8,12 @@ module.exports = {
 
 async function profile(req, res) {
   return res.json({
-    message: 'TODO: Implement /user/profile. Note, adding req.user object just for posterity.',
+    message:
+      'TODO: Implement /user/profile. Note, adding req.user object just for posterity.',
     ...req.user
   });
 }
 
 async function permissions(req, res) {
-  return res.json({...req.user});
+  return res.json({ ...req.user });
 }

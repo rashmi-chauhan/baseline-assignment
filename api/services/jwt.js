@@ -1,7 +1,7 @@
 const bluebird = require('bluebird');
 const jwt = require('jsonwebtoken');
 const redisService = require('../services/redis');
-const {promisify} = require('util');
+const { promisify } = require('util');
 const verify = promisify(jwt.verify);
 const { REDIS } = require('./constants');
 
@@ -18,9 +18,13 @@ async function sign(payload) {
   // Persist the refresh token to redis
   // This allows for a quick mechanism to verify that we issued it and also
   // a way to quickly expire all refresh tokens in the event of a breach
-  let refreshTokenPayload = {...payload, created_at: new Date()};
+  let refreshTokenPayload = { ...payload, created_at: new Date() };
   let refreshToken = jwt.sign(refreshTokenPayload, process.env.JWT_SECRET);
-  let redisResult = await redisService.set(REDIS.REFRESH_TOKENS_DB, refreshToken, true);
+  let redisResult = await redisService.set(
+    REDIS.REFRESH_TOKENS_DB,
+    refreshToken,
+    true
+  );
   return {
     accessToken,
     refreshToken

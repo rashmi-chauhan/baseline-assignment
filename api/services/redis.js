@@ -10,7 +10,8 @@ const redisClient = redis.createClient({
 });
 
 async function set(redisDatabase, key, value) {
-  return await redisClient.multi()
+  return await redisClient
+    .multi()
     .select(redisDatabase)
     .set(key, value)
     .execAsync();
@@ -22,10 +23,7 @@ async function get(redisDatabase, key) {
 }
 
 async function del(redisDatabase, key) {
-  return await redisClient.multi()
-    .select(redisDatabase)
-    .del(key)
-    .execAsync();
+  return await redisClient.multi().select(redisDatabase).del(key).execAsync();
 }
 
 module.exports = {

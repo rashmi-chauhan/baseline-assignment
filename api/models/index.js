@@ -1,7 +1,7 @@
 const { User, UserEmail, UserProfile } = require('./User');
 const MigrateUser = require('./User').migrate;
-const { Permission } = require ('./Permission');
-const MigratePermission =  require('./Permission').migrate
+const { Permission } = require('./Permission');
+const MigratePermission = require('./Permission').migrate;
 const sequelize = require('../services/sequelize');
 
 /**
@@ -16,7 +16,10 @@ async function executeRawQuery(queryName, replacements) {
     throw new Error(`Invalid query specified`);
   }
 
-  let results = await sequelize.query(query, { replacements: replacements, type: sequelize.QueryTypes.SELECT});
+  let results = await sequelize.query(query, {
+    replacements: replacements,
+    type: sequelize.QueryTypes.SELECT
+  });
   return results;
 }
 
@@ -34,7 +37,7 @@ let Migrations = {
 
 let Helpers = {
   executeRawQuery
-}
+};
 
 module.exports = {
   Models,

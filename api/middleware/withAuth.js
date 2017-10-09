@@ -10,21 +10,24 @@ module.exports = function withAuth(routeHandler) {
       let authorization = req.headers['authorization'] || '';
       let token = authorization.replace('Bearer ', '');
       let decoded = await jwtService.verifyToken(token);
-      let issuedRefreshToken = await redisService.get(REDIS.REFRESH_TOKENS_DB, token);
+      let issuedRefreshToken = await redisService.get(
+        REDIS.REFRESH_TOKENS_DB,
+        token
+      );
       if (issuedRefreshToken) {
         // Cannot use refresh token to authenticate
         throw new Error(`Invalid token`);
       }
-      let permissions = await Helpers.executeRawQuery('findUserPermissions', {userId: decoded.userId});
+      let permissions = await Helpers.executeRawQuery('findUserPermissions', {
+        userId: decoded.userId
+      });
       req.user = {
         id: decoded.userId,
         permissions
       };
       return routeHandler(req, res);
     } catch (error) {
-      return res
-        .status(401)
-        .json({message: `Unauthorized access detected`});
+      return res.status(401).json({ message: `Unauthorized access detected` });
     }
-  }
-}
+  };
+};
