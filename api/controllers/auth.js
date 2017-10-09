@@ -45,7 +45,7 @@ async function refresh(req, res) {
   try {
     let decoded = await jwtService.verifyToken(req.body.refresh_token);
     let issuedToken = await redisService.get(REDIS.REFRESH_TOKENS_DB, req.body.refresh_token);
-    if (!decoded.refresh_token || !issuedToken) {
+    if (!issuedToken) {
       throw new Error(`Invalid token`);
     }
 
