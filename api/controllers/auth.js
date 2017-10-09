@@ -31,7 +31,7 @@ async function login(req, res) {
   }
 
   let {accessToken, refreshToken} = await jwtService.sign({
-    id: user.id
+    userId: user.id
   });
 
   return res.json({

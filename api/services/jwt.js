@@ -25,5 +25,6 @@ async function sign(payload) {
 }
 
 async function verifyToken(token) {
-  return await jwt.verify(token);
+  let decoded = await jwt.verify(token, process.env.JWT_SECRET);
+  return decoded;
 }
