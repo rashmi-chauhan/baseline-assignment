@@ -7,6 +7,9 @@ module.exports = function withAuth(routeHandler) {
       let authorization = req.headers['authorization'] || '';
       let token = authorization.replace('Bearer ', '');
       let decoded = await jwtService.verifyToken(token);
+      if (decoded.refresh_token) {
+        throw new Error(`Invalid token`);
+      }
       req.userId = decoded.userId;
       return routeHandler(req, res);
     } catch (error) {

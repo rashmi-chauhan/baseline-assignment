@@ -16,7 +16,8 @@ async function sign(payload) {
   });
 
   // Persist the refresh token to redis, this allows us an easy mechanism to expire all refresh tokens operationally
-  let refreshToken = jwt.sign({refresh_token: true}, process.env.JWT_SECRET);
+  let refreshTokenPayload = {refresh_token: true, ...payload, created_at: new Date()};
+  let refreshToken = jwt.sign(refreshTokenPayload, process.env.JWT_SECRET);
   let redisResult = await redisService.set(REDIS.REFRESH_TOKENS_DB, refreshToken, true);
   return {
     accessToken,

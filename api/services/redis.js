@@ -15,6 +15,15 @@ async function set(redisDatabase, key, value) {
     .set(key, value)
     .execAsync();
 }
+
+async function del(redisDatabase, key) {
+  return await redisClient.multi()
+    .select(redisDatabase)
+    .del(key)
+    .execAsync();
+}
+
 module.exports = {
-  set
+  set,
+  del
 };
