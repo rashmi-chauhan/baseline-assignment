@@ -1,5 +1,5 @@
 
-const { STRING, TEXT, BOOLEAN } = require('sequelize');
+const { STRING, TEXT, BOOLEAN, UUID, UUIDV4 } = require('sequelize');
 const { DEFAULT_MODEL_SETTINGS } = require('./config');
 const sequelize = require('../services/sequelize');
 const winston = require('winston');
@@ -12,6 +12,11 @@ const { Permission, PermissionGroup } = require('./Permission');
 const User = sequelize.define(
   'user',
   {
+    id: {
+      type: UUID,
+      defaultValue: UUIDV4,
+      primaryKey: true
+    },
     password: { type: TEXT, allowNull: false }
   },
   DEFAULT_MODEL_SETTINGS

@@ -13,7 +13,7 @@ module.exports = function withAuth(routeHandler) {
       }
       let permissions = await Helpers.executeRawQuery('findUserPermissions', {userId: decoded.userId});
       req.user = {
-        id: decoded.userId,
+        identifier: decoded.userId,
         permissions
       };
       return routeHandler(req, res);
