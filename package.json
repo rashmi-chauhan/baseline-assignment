@@ -69,7 +69,8 @@
     "swagger:edit": "swagger_swagger_fileName=api/swagger/swagger.yaml swagger project edit -p 3002 --host 0.0.0.0 -s",
     "test": "./node_modules/.bin/jest",
     "test:watch": "./node_modules/.bin/jest --watchAll",
-    "prettify": "find ./api/**/*.js | xargs ./node_modules/.bin/prettier --write --single-quote"
+    "prettify:api": "find ./api/**/*.js | xargs ./node_modules/.bin/prettier --write --single-quote",
+    "prettify:client": "find ./src/**/*.js | xargs ./node_modules/.bin/prettier --write --single-quote"
   },
   "devDependencies": {
     "enzyme": "^2.9.1",
