@@ -1,6 +1,8 @@
 const winston = require('winston');
+const redisService = require('../services/redis');
 const jwtService = require('../services/jwt');
 const { Helpers } = require('../models');
+const { REDIS } = require('../services/constants');
 
 module.exports = function withAuth(routeHandler) {
   return async (req, res) => {
@@ -8,7 +10,9 @@ module.exports = function withAuth(routeHandler) {
       let authorization = req.headers['authorization'] || '';
       let token = authorization.replace('Bearer ', '');
       let decoded = await jwtService.verifyToken(token);
-      if (decoded.refresh_token) {
+      let issuedRefreshToken = await redisService.get(REDIS.REFRESH_TOKENS_DB, token);
+      if (issuedRefreshToken) {
+        // Cannot use refresh token to authenticate
         throw new Error(`Invalid token`);
       }
       let permissions = await Helpers.executeRawQuery('findUserPermissions', {userId: decoded.userId});
