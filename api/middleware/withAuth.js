@@ -1,5 +1,6 @@
 const winston = require('winston');
 const jwtService = require('../services/jwt');
+const { Helpers } = require('../models');
 
 module.exports = function withAuth(routeHandler) {
   return async (req, res) => {
@@ -10,7 +11,11 @@ module.exports = function withAuth(routeHandler) {
       if (decoded.refresh_token) {
         throw new Error(`Invalid token`);
       }
-      req.userId = decoded.userId;
+      let permissions = await Helpers.executeRawQuery('findUserPermissions', {userId: decoded.userId});
+      req.user = {
+        id: decoded.userId,
+        permissions
+      };
       return routeHandler(req, res);
     } catch (error) {
       return res
