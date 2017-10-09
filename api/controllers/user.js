@@ -14,5 +14,5 @@ async function profile(req, res) {
 }
 
 async function permissions(req, res) {
-  return res.json({message: 'TODO: Implement /user/permissions'});
+  return res.json({...req.user});
 }
