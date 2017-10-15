@@ -16,6 +16,7 @@
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "glob": "^7.1.2",
+    "helmet": "^3.9.0",
     "js-yaml": "^3.9.1",
     "jsonwebtoken": "^7.4.2",
     "knex": "^0.13.0",
