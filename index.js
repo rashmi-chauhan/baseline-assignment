@@ -3,7 +3,6 @@ const express = require('express');
 const winston = require('winston');
 const api = require('./api');
 const path = require('path');
-const helmet = require('helmet');
 
 // Server-wide settings
 winston.level = process.env.WINSTON_LEVEL || 'debug';
@@ -15,7 +14,6 @@ const serverRoutes = ['/api', '/auth'];
 async function startServer() {
   const app = await api(express());
   app.use(express.static('build'));
-  app.use(helmet());
   app.get('*', function(req, res, next) {
     if (serverRoutes.indexOf(req.url) < 0) {
       return res

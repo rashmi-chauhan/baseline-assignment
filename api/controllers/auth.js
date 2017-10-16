@@ -30,13 +30,14 @@ async function login(req, res) {
   }
 
   // Note: A JWT is *signed* not *encrypted*. The best approach is to sign an object with the *minimally needed* information to identify a person
-  let { accessToken, refreshToken } = await jwtService.sign({
+  let { accessToken, refreshToken, expiresIn } = await jwtService.sign({
     userId: user.id
   });
 
   return res.json({
     access_token: accessToken,
     refresh_token: refreshToken,
+    expires_in: expiresIn,
     token_type: 'Bearer'
   });
 }

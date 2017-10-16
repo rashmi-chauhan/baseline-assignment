@@ -7,6 +7,7 @@ const path = require('path');
 const connectToPassport = require('./middleware/passport');
 const cors = require('cors');
 const models = require('./models');
+const helmet = require('helmet');
 
 // Promisify Swagger
 Promise.promisifyAll(SwaggerExpress);
@@ -19,6 +20,7 @@ let config = {
 };
 
 async function api(app) {
+  app.use(helmet());
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
   app.use(cors());

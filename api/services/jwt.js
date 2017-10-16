@@ -4,6 +4,8 @@ const redisService = require('../services/redis');
 const { promisify } = require('util');
 const verify = promisify(jwt.verify);
 const { REDIS } = require('./constants');
+const ms = require('ms');
+const moment = require('moment');
 
 module.exports = {
   sign,
@@ -11,8 +13,11 @@ module.exports = {
 };
 
 async function sign(payload) {
+  let expiresIn = process.env.JWT_EXPIRES_IN || `1d`;
+  let expiresInMs = ms(expiresIn);
+  let expiresInDate = moment().add('ms', expiresInMs);
   let accessToken = jwt.sign(payload, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRES_IN || `1d`
+    expiresIn: expiresIn
   });
 
   // Persist the refresh token to redis
@@ -27,7 +32,8 @@ async function sign(payload) {
   );
   return {
     accessToken,
-    refreshToken
+    refreshToken,
+    expiresIn: expiresInDate.toDate().getTime()
   };
 }
 
