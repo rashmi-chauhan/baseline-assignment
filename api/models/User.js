@@ -135,11 +135,37 @@ async function migrate() {
   }
 }
 
+async function createUserInUserTables(data) {
+  try {
+    let user = await User.create({
+      password: bcrypt.hashSync(data.password, 12)
+    });
+
+    let userProfile = await UserProfile.create({
+      first_name: data.first_name,
+      last_name: data.last_name
+    });
+
+    await user.update({ user_profile_id: userProfile.id });
+
+    let createEmails = await UserEmail.create( {
+      email: data.email,
+      is_primary: true,
+      user_id: user.id
+    });
+    return user;
+
+  }catch (ex) {
+    winston.error(`Could not scaffold User model and hierarchy. ${ex}`);
+  }
+}
+
 module.exports = {
   User,
   UserProfile,
   UserEmail,
   UserPermission,
   UserPermissionGroup,
-  migrate
+  migrate,
+  createUserInUserTables
 };

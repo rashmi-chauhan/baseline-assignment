@@ -18,6 +18,27 @@ consumes:
 produces:
   - application/json
 paths:
+  /auth/register:
+    x-swagger-router-controller: auth
+    post:
+      description: Issues a valid JWT for an external system to have access to the backend API
+      operationId: register
+      parameters:
+      - name: body
+        in: body
+        description: The credentials of the user attempting to login
+        required: true
+        schema:
+          $ref: "#/definitions/Register"
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/RegisterResult"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /auth/login:
     x-swagger-router-controller: auth
     post:
@@ -142,6 +163,12 @@ definitions:
     properties:
       message:
         type: string
+  Register:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
   Login:
     properties:
       email:
@@ -151,6 +178,11 @@ definitions:
   Refresh:
     properties:
       refresh_token:
+        type: string
+
+  RegisterResult:
+    properties:
+      email:
         type: string
   LoginResult:
     properties:

@@ -3,12 +3,14 @@ const { promisify } = require('util');
 const redisService = require('../services/redis');
 const jwtService = require('../services/jwt');
 const compare = promisify(bcrypt.compare);
-const { User, UserEmail } = require('../models').Models;
+const { User, UserEmail, UserProfile } = require('../models').Models;
 const { REDIS } = require('../services/constants');
+const createUser = require('../models/User').createUserInUserTables;
 
 module.exports = {
   login,
-  refresh
+  refresh,
+  register
 };
 
 async function login(req, res) {
@@ -40,6 +42,47 @@ async function login(req, res) {
     expires_in: expiresIn,
     token_type: 'Bearer'
   });
+}
+
+async function register(req, res) {
+  try {
+    let userEmail = await UserEmail.findOne({
+      where: { email: req.body.email, is_primary: true }
+    });
+  
+    if (userEmail) {
+      return res.status(201).json({ message: `Email already exist` });
+    } else {
+      let userCreated = await createUser(
+        { email: req.body.email, password: req.body.password, first_name:req.body.first_name, last_name: req.body.last_name }
+      );
+    if(userCreated != null ){
+      let userProfile = await UserProfile.findOne({
+        where: { id: userCreated.user_profile_id }
+      });
+
+      let { accessToken, refreshToken, expiresIn } = await jwtService.sign({
+        userId: userCreated.id
+      });
+
+        return res.json({
+          access_token: accessToken,
+          refresh_token: refreshToken,
+          email: req.body.email,
+          first_name: userProfile.first_name,
+          last_name: userProfile.last_name
+        });
+      } else {
+        return res
+        .status(401)
+        .json({ message: `Unable to create user due to some error occurred.` });
+      }
+    }
+  } catch (error) {
+    return res
+      .status(401)
+      .json({ message: error.message || `Unauthorized access detected` });
+  }
 }
 
 async function refresh(req, res) {
